@@ -9,7 +9,395 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maxiplast - Fabricante de envases plásticos con 18 años de experiencia.">
+  <title>Maxiplast | Fabricante de Envases Plásticos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --green:#6DB500;--green-light:#90D400;--yellow:#F5C400;--wa:#25D366;
+      --font-d:'Bebas Neue',sans-serif;--font-b:'Nunito',sans-serif;
+      --bg:#0D0D0D;--bg-soft:#111;--bg-card:#141414;
+      --text:#FFF;--text-muted:rgba(255,255,255,.55);--text-faint:rgba(255,255,255,.3);
+      --border:rgba(255,255,255,.07);--border-green:rgba(109,181,0,.2);
+      --grid:rgba(109,181,0,.07);--nav-bg:rgba(13,13,13,.96);
+      --shadow:rgba(0,0,0,.5);--stat-bg:rgba(255,255,255,.04);
+      --fcard-bg:rgba(255,255,255,.03);--fcard-h:rgba(109,181,0,.06);
+      --quote-bg:rgba(109,181,0,.06);--pimg-bg:linear-gradient(135deg,#151515,#1c1c1c);
+      --glow:rgba(109,181,0,.13);
+    }
+    [data-theme="light"]{
+      --bg:#F2F5EC;--bg-soft:#EAF0DF;--bg-card:#FFF;
+      --text:#0D0D0D;--text-muted:rgba(0,0,0,.55);--text-faint:rgba(0,0,0,.35);
+      --border:rgba(0,0,0,.08);--border-green:rgba(109,181,0,.3);
+      --grid:rgba(109,181,0,.1);--nav-bg:rgba(242,245,236,.97);
+      --shadow:rgba(0,0,0,.1);--stat-bg:rgba(109,181,0,.07);
+      --fcard-bg:rgba(109,181,0,.04);--fcard-h:rgba(109,181,0,.1);
+      --quote-bg:rgba(109,181,0,.08);--pimg-bg:linear-gradient(135deg,#dde8cb,#cfddbf);
+      --glow:rgba(109,181,0,.18);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-b);background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .3s,color .3s}
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--green);border-radius:3px}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:70px;background:var(--nav-bg);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 6%;border-bottom:1px solid var(--border-green);transition:background .3s,box-shadow .3s}
+    nav.scrolled{box-shadow:0 4px 30px var(--shadow)}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-oval{width:52px;height:36px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2.5px solid var(--green);flex-shrink:0}
+    .logo-oval span{font-family:var(--font-d);font-size:13px;color:#0D0D0D;letter-spacing:1px}
+    .logo-wordmark{font-family:var(--font-d);font-size:27px;letter-spacing:3px;color:var(--text);transition:color .3s}
+    .logo-wordmark em{font-style:normal;color:var(--green)}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--green);transition:width .3s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-links a:hover::after{width:100%}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .theme-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--border-green);background:var(--stat-bg);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .theme-btn:hover{background:var(--fcard-h);border-color:var(--green)}
+    .nav-wa{display:flex;align-items:center;gap:8px;background:var(--wa);color:#fff;font-size:13px;font-weight:800;padding:9px 20px;border-radius:30px;text-decoration:none;transition:all .2s}
+    .nav-wa:hover{background:#1daa55;transform:scale(1.04)}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+    .hamburger span{width:26px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;display:block}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mmenu{display:none;position:fixed;top:70px;left:0;right:0;background:var(--nav-bg);backdrop-filter:blur(12px);z-index:999;padding:24px 6%;border-bottom:1px solid var(--border-green);flex-direction:column;gap:4px}
+    .mmenu.open{display:flex}
+    .mmenu a{font-size:18px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--border);transition:color .2s}
+    .mmenu a:hover{color:var(--green)}
+
+    /* HERO */
+    #inicio{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:70px}
+    .hbg{position:absolute;inset:0;background:var(--bg);transition:background .3s}
+    .hgrid{position:absolute;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:60px 60px}
+    .hslash{position:absolute;right:0;top:0;bottom:0;width:48%;background:linear-gradient(135deg,transparent 25%,rgba(109,181,0,.05) 100%);clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)}
+    .hglow{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);pointer-events:none}
+    .hcontent{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:80px 6%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .hbadge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(109,181,0,.4);background:rgba(109,181,0,.08);color:var(--green);font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:8px 16px;border-radius:4px;margin-bottom:24px;opacity:0;animation:fadeUp .6s .2s forwards}
+    .bdot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pdot 1.5s infinite}
+    @keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+    .htitle{font-family:var(--font-d);font-size:clamp(54px,7.5vw,100px);line-height:.93;color:var(--text);text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;opacity:0;animation:fadeUp .7s .4s forwards;transition:color .3s}
+    .htitle .hl{color:var(--green)}
+    .hsub{font-size:16px;font-weight:400;color:var(--text-muted);line-height:1.85;max-width:460px;margin-bottom:40px;opacity:0;animation:fadeUp .7s .6s forwards}
+    .hbtns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .8s forwards}
+    .btn-wa{display:inline-flex;align-items:center;gap:10px;background:var(--wa);color:#fff;font-size:15px;font-weight:800;padding:15px 28px;border-radius:8px;text-decoration:none;transition:all .25s}
+    .btn-wa:hover{background:#1daa55;transform:translateY(-3px);box-shadow:0 10px 30px rgba(37,211,102,.3)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);font-size:15px;font-weight:800;padding:15px 28px;border-radius:8px;border:1px solid var(--border-green);text-decoration:none;transition:all .25s}
+    .btn-ghost:hover{border-color:var(--green);color:var(--green)}
+    .hright{display:flex;flex-direction:column;gap:18px;opacity:0;animation:fadeRight .8s .5s forwards}
+    .scard{background:var(--stat-bg);border:1px solid var(--border-green);border-radius:12px;padding:22px 26px;display:flex;align-items:center;gap:18px;transition:border-color .3s,background .3s}
+    .scard:hover{border-color:var(--green)}
+    .sicon{width:48px;height:48px;background:rgba(109,181,0,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .snum{font-family:var(--font-d);font-size:42px;color:var(--green);line-height:1}
+    .slbl{font-size:12px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
+
+    .divider{height:4px;background:linear-gradient(90deg,var(--bg) 0%,var(--green) 30%,var(--green-light) 60%,var(--bg) 100%)}
+    section{scroll-margin-top:70px}
+    .wrap{padding:96px 6%;max-width:1200px;margin:0 auto}
+    .stag{font-size:12px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+    .stitle{font-family:var(--font-d);font-size:clamp(38px,5vw,64px);line-height:1;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;color:var(--text);transition:color .3s}
+    .sdesc{font-size:15px;color:var(--text-muted);max-width:520px;line-height:1.85}
+
+    /* PRODUCTOS */
+    #productos{background:var(--bg-soft);transition:background .3s}
+    .ftabs{display:flex;flex-wrap:wrap;gap:10px;margin:48px 0 40px}
+    .ftab{font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:9px 22px;border-radius:30px;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;transition:all .2s}
+    .ftab:hover{border-color:var(--green);color:var(--green)}
+    .ftab.active{background:var(--green);border-color:var(--green);color:#0D0D0D}
+    .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+    .pcard{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .3s}
+    .pcard.hidden{display:none}
+    .pcard:hover{border-color:var(--green);transform:translateY(-6px);box-shadow:0 16px 40px var(--shadow)}
+    .pimg{height:160px;display:flex;align-items:center;justify-content:center;background:var(--pimg-bg);position:relative;overflow:hidden}
+    /*
+    ══════════════════════════════════════════════════
+     HOW TO ADD YOUR PRODUCT PHOTOS
+    ══════════════════════════════════════════════════
+     1. Create a folder called  images/  next to index.html
+     2. Save each product photo there, e.g.  images/cuchillo.jpg
+     3. In the product card below, DELETE the <svg class="psvg"…</svg>
+     4. REPLACE it with:
+            <img src="images/YOUR-FILE.jpg"
+                 alt="Product name"
+                 style="width:100%;height:100%;object-fit:cover;">
+     That's it — the card handles the sizing automatically.
+    ══════════════════════════════════════════════════
+    */
+    .pimg img{width:100%;height:100%;object-fit:cover;display:block}
+    .pimg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+    .pcard:hover .pimg::after{transform:scaleX(1)}
+    .pinfo{padding:18px 20px}
+    .pcat{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);margin-bottom:5px}
+    .pname{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.3;transition:color .3s}
+    .pdesc{font-size:13px;color:var(--text-muted);line-height:1.65;margin-bottom:16px}
+    .pcta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--green);text-decoration:none;transition:gap .2s}
+    .pcta:hover{gap:10px}
+    .psvg{width:68px;height:68px}
+
+    /* NOSOTROS */
+    #nosotros{background:var(--bg);border-top:1px solid var(--border-green);transition:background .3s}
+    .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:60px}
+    .fcard{background:var(--fcard-bg);border:1px solid var(--border-green);border-radius:12px;padding:30px 26px;transition:all .3s}
+    .fcard:hover{background:var(--fcard-h);border-color:rgba(109,181,0,.4);transform:translateY(-4px)}
+    .fnum{font-family:var(--font-d);font-size:56px;color:var(--green);line-height:1;margin-bottom:4px}
+    .ftitle{font-size:15px;font-weight:800;color:var(--text);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;transition:color .3s}
+    .ftext{font-size:14px;color:var(--text-muted);line-height:1.78}
+    .nq{margin-top:64px;padding:38px 46px;background:var(--quote-bg);border-left:4px solid var(--green);border-radius:0 12px 12px 0}
+    .nq p{font-family:var(--font-d);font-size:clamp(26px,3.5vw,40px);line-height:1.2;text-transform:uppercase;color:var(--text);transition:color .3s}
+    .nq p em{font-style:normal;color:var(--green)}
+
+    /* CONTACTO */
+    #contacto{background:var(--green);position:relative;overflow:hidden}
+    .cpat{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.07) 1px,transparent 1px);background-size:40px 40px}
+    .ccontent{position:relative;z-index:1;text-align:center;padding:96px 6%;max-width:800px;margin:0 auto}
+    .ceye{font-size:12px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:rgba(0,0,0,.45);margin-bottom:16px}
+    .ctitle{font-family:var(--font-d);font-size:clamp(44px,7vw,82px);line-height:.93;color:#0D0D0D;text-transform:uppercase;letter-spacing:1px;margin-bottom:18px}
+    .csub{font-size:16px;color:rgba(0,0,0,.58);margin-bottom:48px;line-height:1.72}
+    .cbtns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+    .btn-dark{display:inline-flex;align-items:center;gap:10px;background:#0D0D0D;color:#fff;font-size:16px;font-weight:800;padding:18px 36px;border-radius:8px;text-decoration:none;transition:all .25s}
+    .btn-dark:hover{background:#1a1a1a;transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.3)}
+    .btn-ring{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#0D0D0D;font-size:16px;font-weight:800;padding:18px 36px;border-radius:8px;border:2px solid rgba(0,0,0,.22);text-decoration:none;transition:all .25s}
+    .btn-ring:hover{background:rgba(0,0,0,.1);border-color:#0D0D0D}
+
+    footer{background:var(--bg-card);border-top:1px solid var(--border-green);padding:44px 6% 28px;transition:background .3s}
+    .foot-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:22px}
+    .flogo{font-family:var(--font-d);font-size:26px;letter-spacing:3px;color:var(--text);transition:color .3s}
+    .flogo em{font-style:normal;color:var(--green)}
+    .flinks{display:flex;gap:26px;flex-wrap:wrap}
+    .flinks a{font-size:13px;font-weight:600;color:var(--text-faint);text-decoration:none;transition:color .2s}
+    .flinks a:hover{color:var(--green)}
+    .fcopy{width:100%;text-align:center;margin-top:28px;padding-top:22px;border-top:1px solid var(--border);font-size:12px;color:var(--text-faint)}
+
+    .wa-float{position:fixed;bottom:30px;right:30px;z-index:500;width:58px;height:58px;background:var(--wa);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,.4);animation:wap 2.5s infinite}
+    .wa-float:hover{background:#1daa55;transform:scale(1.1)}
+    @keyframes wap{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.4)}50%{box-shadow:0 6px 36px rgba(37,211,102,.7)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeRight{from{opacity:0;transform:translateX(32px)}to{opacity:1;transform:translateX(0)}}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:900px){.hcontent{grid-template-columns:1fr;gap:36px}.hright{flex-direction:row;flex-wrap:wrap}.scard{flex:1 1 180px}.nav-links,.nav-wa{display:none}.hamburger{display:flex}}
+    @media(max-width:600px){.htitle{font-size:54px}.pgrid{grid-template-columns:1fr 1fr}.fgrid{grid-template-columns:1fr 1fr}.cbtns{flex-direction:column;align-items:center}.hright{display:none}.nq{padding:26px 24px}}
+    @media(max-width:400px){.pgrid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<a href="https://wa.me/584243455902?text=Hola%20Maxiplast%2C%20me%20interesan%20sus%20productos" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.124 1.523 5.854L0 24l6.336-1.503A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.016-1.378l-.36-.213-3.727.883.9-3.635-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+</a>
+
+<nav id="navbar">
+  <a href="#inicio" class="nav-logo">
+    <div class="logo-oval"><span>MP</span></div>
+    <span class="logo-wordmark">MAXI<em>PLAST</em></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" aria-label="Cambiar tema">☀️</button>
+    <a href="https://wa.me/584243455902?text=Hola%20Maxiplast%2C%20me%20interesan%20sus%20productos" class="nav-wa" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.124 1.523 5.854L0 24l6.336-1.503A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.016-1.378l-.36-.213-3.727.883.9-3.635-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+      WhatsApp
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mmenu" id="mmenu">
+  <a href="#inicio" onclick="closeMobile()">Inicio</a>
+  <a href="#productos" onclick="closeMobile()">Productos</a>
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+  <a href="https://wa.me/584243455902" target="_blank" style="color:var(--wa)" onclick="closeMobile()">WhatsApp</a>
+</div>
+
+<section id="inicio">
+  <div class="hbg"></div><div class="hgrid"></div><div class="hslash"></div><div class="hglow"></div>
+  <div class="hcontent">
+    <div>
+      <div class="hbadge"><div class="bdot"></div>18 Años en el Mercado</div>
+      <h1 class="htitle">UN ENVASE<br>PARA CADA<br><span class="hl">GUSTO</span></h1>
+      <p class="hsub">Fabricantes de envases plásticos con más de 18 años de experiencia. Calidad, variedad y el respaldo de una empresa comprometida con tu negocio.</p>
+      <div class="hbtns">
+        <a href="https://wa.me/584243455902?text=Hola%20Maxiplast%2C%20me%20interesan%20sus%20productos" class="btn-wa" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.124 1.523 5.854L0 24l6.336-1.503A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.016-1.378l-.36-.213-3.727.883.9-3.635-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+          Escríbenos ahora
+        </a>
+        <a href="#productos" class="btn-ghost">Ver productos <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+    <div class="hright">
+      <div class="scard"><div class="sicon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6DB500" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><div class="snum">18</div><div class="slbl">Años de experiencia</div></div></div>
+      <div class="scard"><div class="sicon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6DB500" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div><div class="snum">16+</div><div class="slbl">Líneas de producto</div></div></div>
+      <div class="scard"><div class="sicon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6DB500" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="snum">100%</div><div class="slbl">Calidad garantizada</div></div></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<section id="productos">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="stag">Nuestros Productos</div>
+      <h2 class="stitle">Variedad que <span style="color:var(--green)">impulsa</span><br>tu negocio</h2>
+      <p class="sdesc">Desde cubiertos hasta contenedores térmicos — tenemos el envase perfecto para cada necesidad.</p>
+    </div>
+    <div class="ftabs reveal">
+      <button class="ftab active" data-f="all">Todos</button>
+      <button class="ftab" data-f="cubiertos">Cubiertos</button>
+      <button class="ftab" data-f="bandejas">Bandejas</button>
+      <button class="ftab" data-f="contenedores">Contenedores</button>
+      <button class="ftab" data-f="vasos">Vasos</button>
+      <button class="ftab" data-f="eco">Eco</button>
+    </div>
+    <div class="pgrid">
+
+      <!-- ★ CUBIERTOS ★ -->
+      <!-- IMAGE: delete <svg…/svg> replace with <img src="images/cuchillo.jpg" alt="Cuchillo" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="pcard" data-cat="cubiertos"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><path d="M29 10 Q28 16 32 20 L33 32 Q32 45 34 64 Q36 64 38 64 Q40 45 39 32 L40 20 Q44 16 43 10Z" fill="white" opacity="0.85"/><rect x="33" y="20" width="6" height="12" rx="1" fill="#6DB500" opacity="0.7"/></svg></div><div class="pinfo"><div class="pcat">Cubiertos</div><div class="pname">Cuchillo Plástico</div><div class="pdesc">Resistente y práctico para cualquier tipo de negocio</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20el%20Cuchillo" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- IMAGE: replace with <img src="images/cuchara.jpg" …> -->
+      <div class="pcard" data-cat="cubiertos"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><ellipse cx="36" cy="20" rx="9" ry="11" fill="white" opacity="0.85"/><ellipse cx="36" cy="19" rx="7" ry="9" fill="#6DB500" opacity="0.5"/><rect x="34" y="30" width="4" height="34" rx="2" fill="white" opacity="0.85"/></svg></div><div class="pinfo"><div class="pcat">Cubiertos</div><div class="pname">Cuchara Postre & Sopera</div><div class="pdesc">Disponibles en dos tamaños para postre y sopa</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20la%20Cuchara" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- IMAGE: replace with <img src="images/tenedor.jpg" …> -->
+      <div class="pcard" data-cat="cubiertos"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><rect x="27" y="10" width="4" height="22" rx="2" fill="white" opacity="0.85"/><rect x="33" y="10" width="4" height="20" rx="2" fill="white" opacity="0.85"/><rect x="39" y="10" width="4" height="22" rx="2" fill="white" opacity="0.85"/><path d="M27 30 Q29 38 36 38 Q43 38 45 30" fill="#6DB500" opacity="0.5" stroke="#6DB500" stroke-width="1.5"/><rect x="34" y="38" width="4" height="24" rx="2" fill="white" opacity="0.85"/></svg></div><div class="pinfo"><div class="pcat">Cubiertos</div><div class="pname">Tenedor Plástico</div><div class="pdesc">Ligero, resistente, ideal para comida rápida</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20el%20Tenedor" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- ★ BANDEJAS ★ -->
+      <!-- IMAGE: replace with <img src="images/bandeja-b2.jpg" …> -->
+      <div class="pcard" data-cat="bandejas"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><rect x="10" y="26" width="52" height="28" rx="5" fill="white" opacity="0.1" stroke="white" stroke-width="1.5"/><rect x="14" y="30" width="44" height="20" rx="3" fill="#6DB500" opacity="0.25"/><text x="36" y="44" text-anchor="middle" font-size="11" fill="#6DB500" font-family="sans-serif" font-weight="900">B2</text></svg></div><div class="pinfo"><div class="pcat">Bandejas</div><div class="pname">Bandeja Foam B2</div><div class="pdesc">Super ligera, resistente y multiuso. Ideal para carnes</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20la%20Bandeja%20B2" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- IMAGE: replace with <img src="images/bandeja-bt1.jpg" …> -->
+      <div class="pcard" data-cat="bandejas"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><rect x="12" y="28" width="48" height="24" rx="5" fill="white" opacity="0.1" stroke="white" stroke-width="1.5"/><rect x="16" y="32" width="40" height="16" rx="3" fill="#6DB500" opacity="0.25"/><text x="36" y="43" text-anchor="middle" font-size="11" fill="#6DB500" font-family="sans-serif" font-weight="900">BT1</text></svg></div><div class="pinfo"><div class="pcat">Bandejas</div><div class="pname">Bandeja BT1</div><div class="pdesc">Mantén tus productos frescos y seguros en todo momento</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20la%20Bandeja%20BT1" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- IMAGE: replace with <img src="images/bandeja-a2.jpg" …> -->
+      <div class="pcard" data-cat="bandejas"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><rect x="14" y="30" width="44" height="20" rx="5" fill="white" opacity="0.1" stroke="white" stroke-width="1.5"/><rect x="18" y="34" width="36" height="12" rx="3" fill="#6DB500" opacity="0.25"/><text x="36" y="43" text-anchor="middle" font-size="11" fill="#6DB500" font-family="sans-serif" font-weight="900">A2</text></svg></div><div class="pinfo"><div class="pcat">Bandejas</div><div class="pname">Bandeja A2</div><div class="pdesc">Ligera y manejable. Ideal para cualquier tipo de negocio</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20la%20Bandeja%20A2" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- ★ CONTENEDORES ★ -->
+      <!-- IMAGE: replace with <img src="images/bowl-ensalada.jpg" …> -->
+      <div class="pcard" data-cat="contenedores"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><ellipse cx="36" cy="28" rx="20" ry="8" fill="white" opacity="0.1" stroke="white" stroke-width="1.5"/><path d="M16 28 Q15 50 36 54 Q57 50 56 28" fill="#6DB500" opacity="0.15" stroke="#6DB500" stroke-width="1.5"/></svg></div><div class="pinfo"><div class="pcat">Contenedores</div><div class="pname">Bowl para Ensaladas</div><div class="pdesc">La solución ideal para tus ensaladas — transparente y seguro</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20el%20Bowl%20para%20Ensaladas" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- IMAGE: replace with <img src="images/deli.jpg" …> -->
+      <div class="pcard" data-cat="contenedores"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><rect x="14" y="22" width="44" height="34" rx="4" fill="white" opacity="0.08" stroke="white" stroke-width="1.5"/><rect x="14" y="22" width="44" height="7" rx="4" fill="#6DB500" opacity="0.45"/></svg></div><div class="pinfo"><div class="pcat">Contenedores</div><div class="pname">Contenedor Deli</div><div class="pdesc">Un envase para cada gusto. Diseño y funcionalidad</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20el%20Contenedor%20Deli" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- IMAGE: replace with <img src="images/souffle.jpg" …> -->
+      <div class="pcard" data-cat="contenedores"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><path d="M20 50 L26 28 L46 28 L52 50Z" fill="white" opacity="0.1" stroke="white" stroke-width="1.5"/><ellipse cx="36" cy="50" rx="16" ry="6" fill="#6DB500" opacity="0.2"/></svg></div><div class="pinfo"><div class="pcat">Contenedores</div><div class="pname">Bowl Soufflé</div><div class="pdesc">Resalta tus platillos. Perfecto para porciones individuales</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20el%20Souffl%C3%A9" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- IMAGE: replace with <img src="images/termico.jpg" …> -->
+      <div class="pcard" data-cat="contenedores"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><path d="M16 36 Q16 52 36 56 Q56 52 56 36 L52 22 L20 22Z" fill="white" opacity="0.08" stroke="white" stroke-width="1.5"/><path d="M20 34 Q36 30 52 34" stroke="#6DB500" stroke-width="2" opacity="0.6"/></svg></div><div class="pinfo"><div class="pcat">Contenedores</div><div class="pname">Envase Térmico 24oz</div><div class="pdesc">Disfruta sopas calientes en cualquier lugar</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20el%20Envase%20T%C3%A9rmico" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- IMAGE: replace with <img src="images/ct2.jpg" …> -->
+      <div class="pcard" data-cat="contenedores"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><rect x="14" y="22" width="20" height="32" rx="4" fill="white" opacity="0.1" stroke="white" stroke-width="1.5"/><rect x="38" y="22" width="20" height="32" rx="4" fill="#6DB500" opacity="0.1" stroke="#6DB500" stroke-width="1.5"/><path d="M34 22 Q36 20 38 22" stroke="#6DB500" stroke-width="2" fill="none"/></svg></div><div class="pinfo"><div class="pcat">Contenedores</div><div class="pname">Caja Térmica CT2</div><div class="pdesc">Garantiza el transporte seguro y eficiente de tus productos</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20la%20Caja%20CT2" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- ★ VASOS ★ -->
+      <!-- IMAGE: replace with <img src="images/licorero.jpg" …> -->
+      <div class="pcard" data-cat="vasos"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><path d="M24 18 L20 62 L52 62 L48 18Z" fill="white" opacity="0.1" stroke="white" stroke-width="1.5"/><ellipse cx="36" cy="18" rx="12" ry="4" fill="#6DB500" opacity="0.5"/></svg></div><div class="pinfo"><div class="pcat">Vasos</div><div class="pname">Vasos Licoreros</div><div class="pdesc">Práctico y resistente. Disponible en varios colores</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20el%20Vaso%20Licorero" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- IMAGE: replace with <img src="images/vaso-frio.jpg" …> -->
+      <div class="pcard" data-cat="vasos"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><path d="M22 18 L18 62 L54 62 L50 18Z" fill="white" opacity="0.1" stroke="white" stroke-width="1.5"/><ellipse cx="36" cy="18" rx="14" ry="4.5" fill="#6DB500" opacity="0.3" stroke="#6DB500" stroke-width="1.5"/><circle cx="30" cy="18" r="2" fill="#6DB500" opacity="0.8"/><circle cx="36" cy="18" r="2" fill="#6DB500" opacity="0.8"/><circle cx="42" cy="18" r="2" fill="#6DB500" opacity="0.8"/></svg></div><div class="pinfo"><div class="pcat">Vasos</div><div class="pname">Vaso Frío con Tapa</div><div class="pdesc">La mejor manera de disfrutar tu bebida fría</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20el%20Vaso%20Fr%C3%ADo" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- IMAGE: replace with <img src="images/porcion.jpg" …> -->
+      <div class="pcard" data-cat="vasos"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><path d="M28 24 L24 58 L48 58 L44 24Z" fill="white" opacity="0.1" stroke="white" stroke-width="1.5"/><ellipse cx="36" cy="24" rx="8" ry="3" fill="#6DB500" opacity="0.55"/></svg></div><div class="pinfo"><div class="pcat">Vasos</div><div class="pname">Vaso de Porción</div><div class="pdesc">Ideal para salsas, aderezos, jugos y más</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20el%20Vaso%20de%20Porci%C3%B3n" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- ★ ECO ★ -->
+      <!-- IMAGE: replace with <img src="images/plato-eco.jpg" …> -->
+      <div class="pcard" data-cat="eco"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="38" r="22" fill="white" opacity="0.07" stroke="white" stroke-width="1.5"/><path d="M30 34 Q33 26 36 24 Q39 26 42 34 Q39 44 36 46 Q33 44 30 34Z" fill="#6DB500" opacity="0.45"/></svg></div><div class="pinfo"><div class="pcat">Eco</div><div class="pname">Plato Eco-Amigable</div><div class="pdesc">Disponible en negro y blanco. Diseño sostenible</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20el%20Plato%20Eco" class="pcta" target="_blank">Consultar →</a></div></div>
+
+      <!-- IMAGE: replace with <img src="images/fibra.jpg" …> -->
+      <div class="pcard" data-cat="eco"><div class="pimg"><svg class="psvg" viewBox="0 0 72 72" fill="none"><rect x="14" y="26" width="44" height="28" rx="8" fill="white" opacity="0.08" stroke="white" stroke-width="1.5"/><rect x="16" y="24" width="40" height="6" rx="3" fill="#6DB500" opacity="0.45"/><path d="M18 40 Q36 34 54 40" stroke="#6DB500" stroke-width="1.5" opacity="0.5"/></svg></div><div class="pinfo"><div class="pcat">Eco</div><div class="pname">Envase de Fibra</div><div class="pdesc">Apto para microondas. Sostenible y de alta calidad</div><a href="https://wa.me/584243455902?text=Hola%2C%20me%20interesa%20el%20Envase%20de%20Fibra" class="pcta" target="_blank">Consultar →</a></div></div>
+
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<section id="nosotros">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="stag">¿Por qué elegirnos?</div>
+      <h2 class="stitle">Somos el aliado<br>que <span style="color:var(--green)">necesitas</span></h2>
+      <p class="sdesc">Confía en nuestra experiencia y calidad para mantener tus productos frescos y seguros en todo momento.</p>
+    </div>
+    <div class="fgrid">
+      <div class="fcard reveal"><div class="fnum">18</div><div class="ftitle">Años en el mercado</div><div class="ftext">Más de 18 años fabricando envases de calidad para negocios de todos los tamaños en Venezuela y la región.</div></div>
+      <div class="fcard reveal"><div class="fnum">16+</div><div class="ftitle">Líneas de producto</div><div class="ftext">Cubiertos, bandejas, contenedores, vasos y envases eco-amigables. Todo en un solo proveedor confiable.</div></div>
+      <div class="fcard reveal"><div class="fnum">100%</div><div class="ftitle">Calidad garantizada</div><div class="ftext">Cada producto pasa por control riguroso para garantizar resistencia, higiene y presentación impecable.</div></div>
+      <div class="fcard reveal"><div class="fnum">24/7</div><div class="ftitle">Atención personalizada</div><div class="ftext">Nuestro equipo está disponible por WhatsApp para resolver tus dudas y procesar tu pedido de forma rápida.</div></div>
+    </div>
+    <div class="nq reveal"><p>"<em>Simpleza</em> y eficiencia<br>en un solo <em>producto</em>"</p></div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="cpat"></div>
+  <div class="ccontent">
+    <div class="ceye">Contáctanos hoy</div>
+    <h2 class="ctitle">¿LISTO PARA<br>TU PEDIDO?</h2>
+    <p class="csub">Escríbenos y te atendemos de inmediato.<br>Tenemos el envase perfecto para tu negocio.</p>
+    <div class="cbtns">
+      <a href="https://wa.me/584243455902?text=Hola%20Maxiplast%2C%20quiero%20hacer%20un%20pedido" class="btn-dark" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.124 1.523 5.854L0 24l6.336-1.503A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.016-1.378l-.36-.213-3.727.883.9-3.635-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+        WhatsApp
+      </a>
+      <a href="tel:+584243455902" class="btn-ring"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg> Llamar</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="flogo">MAXI<em>PLAST</em></div>
+    <div class="flinks">
+      <a href="#inicio">Inicio</a><a href="#productos">Productos</a><a href="#nosotros">Nosotros</a>
+      <a href="https://wa.me/584243455902" target="_blank">WhatsApp</a>
+      <a href="https://www.instagram.com/envasesmaxiplast/" target="_blank">Instagram</a>
+    </div>
+  </div>
+  <div class="fcopy">© 2025 Maxiplast · Fabricante de Envases Plásticos · Todos los derechos reservados</div>
+</footer>
+
+<script>
+  window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>50));
+  const hb=document.getElementById('hamburger'),mm=document.getElementById('mmenu');
+  hb.addEventListener('click',()=>{hb.classList.toggle('open');mm.classList.toggle('open')});
+  function closeMobile(){hb.classList.remove('open');mm.classList.remove('open')}
+
+  // Dark / light mode — remembers choice across visits
+  const html=document.documentElement,btn=document.getElementById('themeBtn');
+  applyTheme(localStorage.getItem('mpTheme')||'dark');
+  btn.addEventListener('click',()=>applyTheme(html.dataset.theme==='dark'?'light':'dark'));
+  function applyTheme(t){html.dataset.theme=t;btn.textContent=t==='dark'?'☀️':'🌙';localStorage.setItem('mpTheme',t)}
+
+  document.querySelectorAll('.ftab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.ftab').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      const f=t.dataset.f;
+      document.querySelectorAll('.pcard').forEach(c=>c.classList.toggle('hidden',f!=='all'&&c.dataset.cat!==f));
+    });
+  });
+
+  const obs=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*90);obs.unobserve(e.target)}})},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
+
     :root{
       --black:#0D0D0D;
       --black-soft:#1A1A1A;
