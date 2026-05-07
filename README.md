@@ -1,5 +1,7 @@
 
-Website: https://jaavid134.github.io/maxiplast/
+Website: https://jaavid134.github.io/maxiplast/ 
+
+
 2. Upload your photos
 
 Click into the images/ folder
